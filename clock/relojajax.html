@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reloj con Javascript y ajax</title>
+	<link rel="shortcut icon" href="favicon.ico">
+<meta http-equiv= "content-type" content="test/html; charset=iso-8859-1"/>
+<script type="text/javascript" src="relojajax.js"></script>
+<link rel="stylesheet" type="text/css" href="relojajax.css">
+<script language="JavaScript">
+
+
+
+
+</script>
+</head>
+
+<body onload="compruebaHoraServidor();mueveReloj();">
+<h1>Reloj sincronizado con el servidor mediante AJAX</h1>
+<div id="relojcliente"></div>
+<div id="relojservidorcliente"></div>
+<div id="servidor" class="displaybox"></div>
+<div id="reloj">
+	<div class="circulo">
+		<div id="segundero" class="segundos"><div class="agujaseg" id="agujaseg"></div></div>
+		
+		<div id="minutero" class="minutos"><div class="agujamin" id="agujamin" ></div></div>
+		
+		<div id="horero" class="hora"><div class="agujahora" id="agujahora" ></div></div>
+	</div>
+</div>
+</body>
+</html>
