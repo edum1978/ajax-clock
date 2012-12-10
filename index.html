@@ -153,43 +153,44 @@ padding: 0;
 
 <h3>funcion que mueve las agujas del reloj:</h3>
 
-<p>`
-function mueveReloj(){</p>
+<p>`</p>
 
-<pre><code>//mostrar la hora calculada apartir de los datos de la hora del servidor
-var horaScliente = horaServer.getHours();
-var minutoScliente = horaServer.getMinutes();
-var segundoScliente = horaServer.getSeconds();
-//var milisegundo = horaServer.getMilliseconds();
-document.getElementById('relojservidorcliente').innerHTML = "&lt;p title='Partiendo del dato de la hora el servidor se continua el calculo en el cliente.'&gt;Hora Servidor-Cliente: "+ imprimeHora(horaScliente,minutoScliente,segundoScliente)+ "&lt;/p&gt;";
+<blockquote>
+<p>function mueveReloj(){</p>
 
-//calcula el angulo de desplazamineto de cada aguja del reloj
-var posSeg = "rotate("+(90 +( segundoScliente * 6 ))+"deg)";
-var posMin = "rotate("+(90 +( minutoScliente * 6 ))+"deg)";
-var posHor = "rotate("+(90 +( horaScliente * 30 ))+"deg)";
+<p>//mostrar la hora calculada apartir de los datos de la hora del servidor
+  var horaScliente = horaServer.getHours();
+  var minutoScliente = horaServer.getMinutes();
+  var segundoScliente = horaServer.getSeconds();
+  //var milisegundo = horaServer.getMilliseconds();
+  document.getElementById('relojservidorcliente').innerHTML = "</p>
+<p title="Partiendo del dato de la hora el servidor se continua el calculo en el cliente.">Hora Servidor-Cliente: "+ imprimeHora(horaScliente,minutoScliente,segundoScliente)+ "</p>";
 
+<p>//calcula el angulo de desplazamineto de cada aguja del reloj
+  var posSeg = "rotate("+(90 +( segundoScliente * 6 ))+"deg)";
+  var posMin = "rotate("+(90 +( minutoScliente * 6 ))+"deg)";
+  var posHor = "rotate("+(90 +( horaScliente * 30 ))+"deg)";</p>
 
-//Rotar agujas para IE9, Firefox15 y Chrome23//
-/*document.getElementById('segundos').style.transform = "rotate(0deg)";*/
-document.getElementById('segundero').style.msTransform = posSeg;
-document.getElementById('minutero').style.msTransform = posMin;
-document.getElementById('horero').style.msTransform = posHor;
+<p>//Rotar agujas para IE9, Firefox15 y Chrome23//
+  /*document.getElementById('segundos').style.transform = "rotate(0deg)";*/
+  document.getElementById('segundero').style.msTransform = posSeg;
+  document.getElementById('minutero').style.msTransform = posMin;
+  document.getElementById('horero').style.msTransform = posHor;</p>
 
-document.getElementById('segundero').style.MozTransform = posSeg;
-document.getElementById('minutero').style.MozTransform = posMin;
-document.getElementById('horero').style.MozTransform = posHor;
+<p>document.getElementById('segundero').style.MozTransform = posSeg;
+  document.getElementById('minutero').style.MozTransform = posMin;
+  document.getElementById('horero').style.MozTransform = posHor;</p>
 
-document.getElementById('segundero').style.webkitTransform = posSeg;
-document.getElementById('minutero').style.webkitTransform = posMin;
-document.getElementById('horero').style.webkitTransform = posHor;
+<p>document.getElementById('segundero').style.webkitTransform = posSeg;
+  document.getElementById('minutero').style.webkitTransform = posMin;
+  document.getElementById('horero').style.webkitTransform = posHor;</p>
 
+<p>/* Incrementa cada segundo en un segundo la hora del cliente-servidor */
+  horaServer.setTime(horaServer.getTime()+1000);
+  setTimeout("mueveReloj()",1000)</p>
 
-/* Incrementa cada segundo en un segundo la hora del cliente-servidor */
-horaServer.setTime(horaServer.getTime()+1000);
-setTimeout("mueveReloj()",1000)
-</code></pre>
-
-<p>}`</p>
+<p>}
+`</p>
 
 <h3>funciones para llamar al servidor y sincronizar la hora</h3>
 
@@ -201,6 +202,7 @@ setTimeout("mueveReloj()",1000)
     http.open("GET",modurl,true);
     http.onreadystatechange = recargaDatos;
     http.send(null);</p>
+</blockquote>
 
 <pre><code>//****Extablece el intervalo en milisegundos en el que se conecta al servidor para actualizar la hora cliente-servidor.****//
 setTimeout("compruebaHoraServidor()",60000)
