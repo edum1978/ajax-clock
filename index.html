@@ -39,32 +39,203 @@
         <ul></ul>
       </nav>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <h1>Reloj CSS sincronizado con el servidor mediante ajax:</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Online test demo version of <a href="http://eduardo.mazarrasa.tk/clock/">clock synchronized with ajax</a></p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h2>El reloj en html y css:</h2>
+
+<p>`</p>
+
+<div>
+    <div>
+        <div><div></div></div>
+        
+        <div><div></div></div>
+        
+        <div><div></div></div>
+    </div>
+</div>
+
+<p>`</p>
+
+<p>`.circulo {
+     background-color: #EEE;
+     border: 3px dashed #333;
+     height: 150px;
+     border-radius:75px;</p>
+
+<pre><code> width: 150px;
+ box-shadow:5px 5px 5px #999999;
+ position:relative;
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>}
+.segundos{
+    background-color:transparent;
+    padding: 0;
+    margin:0;
+    height:2px;
+    width:142px;
+    top:73px;
+    left:4px;
+    position:relative;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform: rotate(90deg); 
+    transform:rotate(90deg);
+    }
+.agujaseg{
+background-color: #F00;
+padding: 0;
+    margin:0;
+    height:2px;
+    width:70px;
+    top:0px;
+    left:0px;
+    position:relative;
+     //box-shadow:5px 5px 5px #999999;
+}
+.minutos{
+    background-color:transparent;
+    padding: 0;
+    margin:0;
+    height:4px;
+    width:110px;
+    top:69px;
+    left:20px;
+    position:relative;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    transform:rotate(90deg);
+    }
+.agujamin{
+background-color: #000;
+padding: 0;
+    margin:0;
+    height:4px;
+    width:55px;
+    top:0px;
+    left:0px;
+    position:relative;
+     //box-shadow:5px 5px 5px #999999;
+}
+.hora{
+    background-color:transparent;
+    padding: 0;
+    margin:0;
+    height:8px;
+    width:80px;
+    top:63px;
+    left:35px;
+    position:relative;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    transform:rotate(90deg);
+    }
+.agujahora{
+background-color: #000;
+padding: 0;
+    margin:0;
+    height:8px;
+    width:40px;
+    top:0px;
+    left:0px;
+    position:relative;
+     //box-shadow:5px 5px 5px #999999;
+}`</p>
 
-<h3>Designer Templates</h3>
+<h2>EL javaScript para mover el reloj:</h2>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h3>Establece la hora del cliente</h3>
 
-<h3>Rather Drive Stick?</h3>
+<p>En una variable global
+<code>var horaServer = new Date();</code></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h3>funcion que mueve las agujas del reloj:</h3>
 
-<h3>Authors and Contributors</h3>
+<p>`function mueveReloj(){</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<pre><code>//mostrar la hora calculada apartir de los datos de la hora del servidor
+var horaScliente = horaServer.getHours();
+var minutoScliente = horaServer.getMinutes();
+var segundoScliente = horaServer.getSeconds();
+//var milisegundo = horaServer.getMilliseconds();
+document.getElementById('relojservidorcliente').innerHTML = "&lt;p title='Partiendo del dato de la hora el servidor se continua el calculo en el cliente.'&gt;Hora Servidor-Cliente: "+ imprimeHora(horaScliente,minutoScliente,segundoScliente)+ "&lt;/p&gt;";
 
-<h3>Support or Contact</h3>
+//calcula el angulo de desplazamineto de cada aguja del reloj
+var posSeg = "rotate("+(90 +( segundoScliente * 6 ))+"deg)";
+var posMin = "rotate("+(90 +( minutoScliente * 6 ))+"deg)";
+var posHor = "rotate("+(90 +( horaScliente * 30 ))+"deg)";
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+
+//Rotar agujas para IE9, Firefox15 y Chrome23//
+/*document.getElementById('segundos').style.transform = "rotate(0deg)";*/
+document.getElementById('segundero').style.msTransform = posSeg;
+document.getElementById('minutero').style.msTransform = posMin;
+document.getElementById('horero').style.msTransform = posHor;
+
+document.getElementById('segundero').style.MozTransform = posSeg;
+document.getElementById('minutero').style.MozTransform = posMin;
+document.getElementById('horero').style.MozTransform = posHor;
+
+document.getElementById('segundero').style.webkitTransform = posSeg;
+document.getElementById('minutero').style.webkitTransform = posMin;
+document.getElementById('horero').style.webkitTransform = posHor;
+
+
+/* Incrementa cada segundo en un segundo la hora del cliente-servidor */
+horaServer.setTime(horaServer.getTime()+1000);
+setTimeout("mueveReloj()",1000)
+</code></pre>
+
+<p>}`</p>
+
+<h3>funciones para llamar al servidor y sincronizar la hora</h3>
+
+<p>`function compruebaHoraServidor(){
+    var myurl = 'datexml.php';
+    //Evita el cacheo de la petición//
+    var miAleatorio = parseInt(Math.random()*99999999);
+    var modurl =  myurl +"?rand="+miAleatorio;
+    http.open("GET",modurl,true);
+    http.onreadystatechange = recargaDatos;
+    http.send(null);</p>
+
+<pre><code>//****Extablece el intervalo en milisegundos en el que se conecta al servidor para actualizar la hora cliente-servidor.****//
+setTimeout("compruebaHoraServidor()",60000)
+}` 
+</code></pre>
+
+<p>`function recargaDatos()
+    {
+        if(http.readyState ==4)
+            {
+            if (http.status == 200)
+                {
+                /*codigo a ejecutar porque todo ha ido bien*/</p>
+
+<pre><code>            var segundos = http.responseXML.getElementsByTagName("hora")[0].childNodes[0].nodeValue
+            //milisegundos desde 1970(Época Unix)
+            horaServer.setTime(Number(segundos)*1000);
+            //muestra la fecha de ultima sincronización con el servidor                
+            document.getElementById('servidor').innerHTML = "&lt;p&gt;Última sincronización con el servidor: "+ horaServer + "&lt;/p&gt;";
+
+            }
+        else
+            {
+            //mensaje de error
+            document.getElementById('servidor').innerHTML = '&lt;p&gt;No se encuentra el servidor &lt;img  src="img/error.jpg"&gt;&lt;/p&gt;';
+            }
+        }
+    else
+        {
+            //waiting server
+        document.getElementById('servidor').innerHTML = '&lt;p&gt;Sincronizando con el servidor...&lt;img src="img/wait.gif"&gt;&lt;/p&gt;';
+        }
+    //setTimeout("compruebaHoraServidor()",10000)
+}`
+</code></pre>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/edum1978">edum1978</a></p>
