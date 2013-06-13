@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reloj con Javascript y ajax</title>
+	<link rel="shortcut icon" href="favicon.ico">
+<meta http-equiv= "content-type" content="test/html; charset=iso-8859-1"/>
+<script type="text/javascript" src="ajax-clock.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script language="JavaScript">
+
+</script>
+
+</head>
+
+<body onload="initTimer();">
+<h1>Reloj sincronizado con el servidor mediante AJAX</h1>
+<div id="reloj">
+	<div class="circulo">
+		<div id="segundero" class="segundos"><div class="agujaseg" id="agujaseg"></div></div>
+		
+		<div id="minutero" class="minutos"><div class="agujamin" id="agujamin" ></div></div>
+		
+		<div id="horero" class="hora"><div class="agujahora" id="agujahora" ></div></div>
+	</div>
+</div>
+<div id="relojcliente"></div>
+<div id="relojservidorcliente"></div>
+<div id="sincroya"></div>
+<div id="servidor" class="displaybox"></div>
+
+<div id="licencia"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES">
+	<img alt="Licencia de Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />
+	<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ajax-clock</span>
+	 by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.eduardo.mazarrasa.tk" property="cc:attributionName" rel="cc:attributionURL">Eduardo mazarrasa</a>
+	 is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES">Creative Commons Reconocimiento-CompartirIgual 3.0 Unported License</a>.
+ </div>
+
+</body>
+</html>
